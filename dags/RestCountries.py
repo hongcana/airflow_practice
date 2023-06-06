@@ -19,12 +19,8 @@ def get_country_info():
     re = requests.get(url)
     data = re.json()
 
-    # json.dumps = JSON 데이터를 문자열로 반환
-    # json.loads = 이스케이프 문자열을 실제 문자로 변환(파싱 과정)
-    converted_data = json.loads(json.dumps(data))
-
     records = []
-    for i in converted_data:
+    for i in data:
         records.append([i['name']['official'], i['population'], i['area']])        
     
     return records
