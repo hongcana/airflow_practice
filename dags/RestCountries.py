@@ -34,10 +34,10 @@ def load(schema, table, records):
         cur.execute(f"DROP TABLE IF EXISTS {schema}.{table};")
         cur.execute(f"""
 CREATE TABLE {schema}.{table} (
-    country text,
+    country varchar(256) primary key,
     population int,
     area float
-);""")
+);""") # DW는 pk 지정으로 uniqueness 보장이 필요!
         for r in records:
             # 따옴표 관련 issue 발생 - values를 분리하여 해결
             sql = f"INSERT INTO {schema}.{table} VALUES (%s, %s, %s);"
